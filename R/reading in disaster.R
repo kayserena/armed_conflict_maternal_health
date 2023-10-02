@@ -15,5 +15,7 @@ cleandis$earthquake <- ifelse(cleandis$Disaster.Type == "Earthquake", 1, 0)
 
 cleandis <- cleandis %>%
   group_by(Year, ISO) %>%
-  summarize(drought = sum(drought), earthquake = sum(earthquake))
+  summarize(drought = max(drought), earthquake = max(earthquake)) %>%
+  ungroup()
+
 

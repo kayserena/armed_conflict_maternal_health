@@ -19,7 +19,9 @@ rawdat %>% select(Country.Name, 'X2000':'X2019') %>%
                names_to='Year',
                values_to=mortalitytype,
                names_prefix = 'X',
-               values_transform = list(value=as.numeric)) }
+               values_transform = list(Year=as.integer)) %>%
+    mutate(Year = as.numeric(Year)) %>%
+    arrange(Country.Name, Year)}
 cleaninfant <- cleanyear(rawdat = rawinf,mortalitytype = "infantmort")
 
 #repeat function for neonatal
@@ -54,7 +56,7 @@ allmort$ISO <- countrycode(allmort$Country.Name,
 allmortISO <- select(allmort, -1)
 
 #change year to integer
-allmortISO$Year = as.integer(allmortISO$Year)
+#allmortISO$Year = as.integer(allmortISO$Year)
 
 #writing new csv with clean data
 #write.csv(allmortISO, here("cleandata", "cleanallmortality.csv"), row.names = FALSE)

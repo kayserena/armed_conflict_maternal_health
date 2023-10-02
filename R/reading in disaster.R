@@ -6,8 +6,8 @@ here()
 rawdis <- read.csv(here("original", "disaster.csv"), header = TRUE)
 rawdis
 cleandis <- rawdis %>% 
-  filter(between(Year,2000,2019)) %>%
-  filter(Disaster.Type %in% c("Drought", "Earthquake")) %>%
+  dplyr::filter(between(Year,2000,2019)) %>%
+  dplyr::filter(Disaster.Type %in% c("Drought", "Earthquake")) %>%
   select(Year, ISO, Disaster.Type)
 
 cleandis$drought <- ifelse(cleandis$Disaster.Type == "Drought", 1, 0)

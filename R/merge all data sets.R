@@ -21,10 +21,10 @@ names(covariates)[names(covariates) == "year"] <- "Year"
 master <- list(covariates, allmortISO,armconf,cleandis)
 
 # merge all
-master |> reduce(left_join, by = c('ISO', 'Year')) -> finaldata
+finaldata <- master %>% reduce(left_join, by = c('ISO', 'Year'))
 
 # need to fill in NAs with 0's for binconf, drought, earthquake, best
-finaldata <- finaldata |>
+finaldata <- finaldata %>%
   mutate(binconf = replace_na(binconf, 0),
          drought = replace_na(drought, 0),
          earthquake = replace_na(earthquake, 0),

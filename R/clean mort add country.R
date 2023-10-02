@@ -57,4 +57,4 @@ allmortISO <- select(allmort, -1)
 allmortISO$Year = as.integer(allmortISO$Year)
 
 #writing new csv with clean data
-write.csv(allmortISO, here("cleandata", "cleanallmortality.csv"), row.names = FALSE)
+#write.csv(allmortISO, here("cleandata", "cleanallmortality.csv"), row.names = FALSE)
